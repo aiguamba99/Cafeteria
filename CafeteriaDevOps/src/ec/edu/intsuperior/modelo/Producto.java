@@ -51,7 +51,6 @@ public class Producto {
                 productos.add(new Producto(id, nombre, precio));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return productos;
     }
