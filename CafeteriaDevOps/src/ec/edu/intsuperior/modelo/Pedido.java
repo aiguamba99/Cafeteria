@@ -56,6 +56,7 @@ public class Pedido {
         return productos;
     }
 
+    // Método para agregar un producto al pedido
     public void agregarProducto(Producto producto, int cantidad) {
         productos.add(producto);
         subtotal += producto.getPrecio() * cantidad;
