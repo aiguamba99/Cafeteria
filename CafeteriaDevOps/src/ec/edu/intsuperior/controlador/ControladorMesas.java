@@ -15,16 +15,21 @@ public class ControladorMesas {
     }
 
     private void inicializarEventos() {
-        // Aquí agregarás los eventos para los botones de la vista
-        // Ejemplo: vistaMesas.getBtnLiberar().addActionListener(e -> liberarMesa());
+        // Ejemplo de eventos para liberar y ocupar mesa
+        vistaMesas.getBtnLiberar().addActionListener(e -> liberarMesa());
+        vistaMesas.getBtnOcupar().addActionListener(e -> ocuparMesa());
     }
 
-    // Métodos para manejar la lógica de mesas
+    // Lógica para liberar una mesa
     private void liberarMesa() {
-        // Lógica para liberar una mesa
+        System.out.println("Liberar mesa...");
+        // Aquí se debe implementar la actualización del estado de la mesa.
     }
 
+    // Lógica para ocupar una mesa
     private void ocuparMesa() {
-        // Lógica para ocupar una mesa
+        System.out.println("Ocupar mesa...");
+        // Aquí se debe implementar la actualización del estado de la mesa.
     }
 }
+

@@ -5,6 +5,7 @@ import ec.edu.intsuperior.modelo.Producto;
 import ec.edu.intsuperior.vista.VistaPedidos;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ControladorPedidos {
     private VistaPedidos vistaPedidos;
@@ -21,7 +22,7 @@ public class ControladorPedidos {
         inicializarEventos();
     }
 
-    // Constructor alternativo para cargar productos desde la base de datos
+    // Constructor alternativo para cargar productos desde la BD
     public ControladorPedidos(VistaPedidos vistaPedidos) {
         this(vistaPedidos, Producto.obtenerProductosDesdeBD(), new ArrayList<>());
     }
@@ -36,16 +37,12 @@ public class ControladorPedidos {
 
     // Método para agregar un producto al pedido actual
     private void agregarProductoAlPedido() {
-        // Obtener el producto seleccionado y la cantidad
         Producto productoSeleccionado = obtenerProductoSeleccionado();
         if (productoSeleccionado != null) {
             try {
                 int cantidad = Integer.parseInt(vistaPedidos.getTxtCantidad().getText());
                 if (cantidad > 0) {
-                    // Agregar el producto al pedido actual
                     pedidoActual.agregarProducto(productoSeleccionado, cantidad);
-
-                    // Actualizar la vista
                     actualizarTablaPedido();
                     vistaPedidos.getLblSubtotal().setText("Subtotal: $" + pedidoActual.getSubtotal());
                 } else {
@@ -59,7 +56,7 @@ public class ControladorPedidos {
         }
     }
 
-    // Método para obtener el producto seleccionado en la tabla
+    // Obtiene el producto seleccionado en la tabla
     private Producto obtenerProductoSeleccionado() {
         int filaSeleccionada = vistaPedidos.getTablaProductos().getSelectedRow();
         if (filaSeleccionada >= 0) {
@@ -68,19 +65,16 @@ public class ControladorPedidos {
         return null;
     }
 
-    // Método para actualizar la tabla de pedidos en la vista
+    // Actualiza la tabla de pedido en la vista
     private void actualizarTablaPedido() {
-        // Limpiar la tabla
         vistaPedidos.getModeloTablaPedido().setRowCount(0);
-
-        // Llenar la tabla con los productos del pedido actual
         for (Producto producto : pedidoActual.getProductos()) {
             Object[] fila = {producto.getNombre(), producto.getPrecio()};
             vistaPedidos.getModeloTablaPedido().addRow(fila);
         }
     }
 
-    // Método para confirmar el pedido
+    // Confirma el pedido actual
     private void confirmarPedido() {
         if (!pedidoActual.getProductos().isEmpty()) {
             pedidos.add(pedidoActual);
@@ -91,19 +85,19 @@ public class ControladorPedidos {
         }
     }
 
-    // Método para reiniciar el pedido actual
+    // Reinicia el pedido actual
     private void reiniciarPedido() {
         pedidoActual = new Pedido(0, 0, "Pendiente", 0.0);
         actualizarTablaPedido();
         vistaPedidos.getLblSubtotal().setText("Subtotal: $0.00");
     }
 
-    // Método para editar el pedido
+    // Lógica para editar el pedido (a implementar según tus necesidades)
     private void editarPedido() {
-        // Lógica para editar un pedido (puedes implementarla según tus necesidades)
+        System.out.println("Editar pedido...");
     }
 
-    // Método para cancelar el pedido
+    // Cancela el pedido actual
     private void cancelarPedido() {
         reiniciarPedido();
         JOptionPane.showMessageDialog(vistaPedidos, "Pedido cancelado.", "Información", JOptionPane.INFORMATION_MESSAGE);

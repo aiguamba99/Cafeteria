@@ -1,6 +1,7 @@
 package ec.edu.intsuperior.vista;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class VistaPedidos extends JFrame {
@@ -11,6 +12,7 @@ public class VistaPedidos extends JFrame {
     private JTable tablaPedido;
     private JLabel lblSubtotal;
     private JButton btnConfirmar, btnEditar, btnCancelar;
+    private DefaultTableModel modeloTablaPedido;
 
     public VistaPedidos() {
         setTitle("Registro de Pedidos");
@@ -18,7 +20,6 @@ public class VistaPedidos extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Panel principal
         JPanel panelPrincipal = new JPanel(new BorderLayout());
 
         // Panel para seleccionar mesa
@@ -48,7 +49,9 @@ public class VistaPedidos extends JFrame {
         // Panel para el pedido actual
         JPanel panelPedido = new JPanel(new BorderLayout());
         panelPedido.add(new JLabel("Pedido Actual:"), BorderLayout.NORTH);
-        tablaPedido = new JTable(new Object[][]{}, new String[]{"Producto", "Cantidad", "Precio"});
+        // Modelo de tabla para pedido con columnas "Producto" y "Precio"
+        modeloTablaPedido = new DefaultTableModel(new String[]{"Producto", "Precio"}, 0);
+        tablaPedido = new JTable(modeloTablaPedido);
         panelPedido.add(new JScrollPane(tablaPedido), BorderLayout.CENTER);
 
         // Panel para subtotal y botones
@@ -68,9 +71,42 @@ public class VistaPedidos extends JFrame {
         add(panelPrincipal);
     }
 
+    // Getters para los componentes
+    public JComboBox<String> getComboMesas() {
+        return comboMesas;
+    }
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
+    public JTextField getTxtCantidad() {
+        return txtCantidad;
+    }
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+    public JTable getTablaPedido() {
+        return tablaPedido;
+    }
+    public DefaultTableModel getModeloTablaPedido() {
+        return modeloTablaPedido;
+    }
+    public JLabel getLblSubtotal() {
+        return lblSubtotal;
+    }
+    public JButton getBtnConfirmar() {
+        return btnConfirmar;
+    }
+    public JButton getBtnEditar() {
+        return btnEditar;
+    }
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new VistaPedidos().setVisible(true);
         });
     }
 }
+

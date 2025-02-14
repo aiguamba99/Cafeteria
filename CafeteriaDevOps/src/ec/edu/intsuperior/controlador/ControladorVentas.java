@@ -15,64 +15,63 @@ public class ControladorVentas {
         this.vistaHistorialVentas = vistaHistorialVentas;
         this.ventas = ventas;
         inicializarEventos();
-        cargarVentas(); // Cargar ventas al iniciar
+        cargarVentas();
     }
 
-    // Inicializar eventos de la vista
+    // Inicializa eventos de la vista
     private void inicializarEventos() {
         vistaHistorialVentas.getBtnFiltrar().addActionListener(e -> filtrarVentas());
     }
 
-    // Método para cargar las ventas en la tabla
+    // Carga las ventas en la tabla
     private void cargarVentas() {
         DefaultTableModel modeloTabla = vistaHistorialVentas.getModeloTablaVentas();
-        modeloTabla.setRowCount(0); // Limpiar la tabla
-
+        modeloTabla.setRowCount(0);
         for (Venta venta : ventas) {
-            Object[] fila = {
-                venta.getId(),
-                venta.getFecha(),
-                venta.getTotal()
-            };
+            Object[] fila = {venta.getId(), venta.getFecha(), venta.getTotal()};
             modeloTabla.addRow(fila);
         }
-
-        calcularTotalIngresos(); // Calcular el total de ingresos
+        calcularTotalIngresos();
     }
 
-    // Método para filtrar ventas por fecha
+    // Filtra las ventas por fecha
     private void filtrarVentas() {
         String fechaFiltro = vistaHistorialVentas.getTxtFecha().getText().trim();
         if (!fechaFiltro.isEmpty()) {
             DefaultTableModel modeloTabla = vistaHistorialVentas.getModeloTablaVentas();
-            modeloTabla.setRowCount(0); // Limpiar la tabla
-
+            modeloTabla.setRowCount(0);
             for (Venta venta : ventas) {
+                // Se compara la fecha convertida a String
                 if (venta.getFecha().toString().equals(fechaFiltro)) {
-                    Object[] fila = {
-                        venta.getId(),
-                        venta.getFecha(),
-                        venta.getTotal()
-                    };
+                    Object[] fila = {venta.getId(), venta.getFecha(), venta.getTotal()};
                     modeloTabla.addRow(fila);
                 }
             }
-
-            calcularTotalIngresos(); // Calcular el total de ingresos filtrados
+            calcularTotalIngresos();
         } else {
             JOptionPane.showMessageDialog(vistaHistorialVentas, "Ingrese una fecha para filtrar.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // Método para calcular el total de ingresos
+    // Calcula y muestra el total de ingresos
     private void calcularTotalIngresos() {
         double totalIngresos = 0.0;
         DefaultTableModel modeloTabla = vistaHistorialVentas.getModeloTablaVentas();
-
         for (int i = 0; i < modeloTabla.getRowCount(); i++) {
-            totalIngresos += (double) modeloTabla.getValueAt(i, 2); // Sumar los totales de las ventas
+            Object value = modeloTabla.getValueAt(i, 2);
+            double total;
+            if (value instanceof Number) {
+                total = ((Number) value).doubleValue();
+            } else {
+                try {
+                    total = Double.parseDouble(value.toString());
+                } catch (NumberFormatException e) {
+                    total = 0.0;
+                }
+            }
+            totalIngresos += total;
         }
-
         vistaHistorialVentas.getLblTotal().setText("Total de ingresos: $" + totalIngresos);
     }
 }
+

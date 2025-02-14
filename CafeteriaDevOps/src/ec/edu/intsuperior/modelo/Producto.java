@@ -12,58 +12,47 @@ public class Producto {
     private String nombre;
     private double precio;
 
-    // Constructor
     public Producto(int id, String nombre, double precio) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    // Getters y Setters
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public double getPrecio() {
         return precio;
     }
-
     public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    // Método para obtener todos los productos desde la base de datos
+    // Obtiene todos los productos desde la BD
     public static List<Producto> obtenerProductosDesdeBD() {
         List<Producto> productos = new ArrayList<>();
         String query = "SELECT id, nombre, precio FROM Producto";
-
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 double precio = rs.getDouble("precio");
                 productos.add(new Producto(id, nombre, precio));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return productos;
     }
 

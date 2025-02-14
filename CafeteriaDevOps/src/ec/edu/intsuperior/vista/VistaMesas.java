@@ -13,14 +13,13 @@ public class VistaMesas extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Panel principal
         JPanel panelPrincipal = new JPanel(new BorderLayout());
 
-        // Tabla de mesas
+        // Tabla de mesas con datos de ejemplo
         tablaMesas = new JTable(new Object[][]{
-                {"Mesa 1", "Disponible"},
-                {"Mesa 2", "Ocupada"},
-                {"Mesa 3", "Disponible"}
+            {"Mesa 1", "Disponible"},
+            {"Mesa 2", "Ocupada"},
+            {"Mesa 3", "Disponible"}
         }, new String[]{"Mesa", "Estado"});
         panelPrincipal.add(new JScrollPane(tablaMesas), BorderLayout.CENTER);
 
@@ -33,6 +32,17 @@ public class VistaMesas extends JFrame {
         panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
 
         add(panelPrincipal);
+    }
+
+    // Getters para componentes
+    public JButton getBtnLiberar() {
+        return btnLiberar;
+    }
+    public JButton getBtnOcupar() {
+        return btnOcupar;
+    }
+    public JTable getTablaMesas() {
+        return tablaMesas;
     }
 
     public static void main(String[] args) {
