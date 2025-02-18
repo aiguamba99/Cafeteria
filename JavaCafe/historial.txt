@@ -1,4 +1,8 @@
-Mesa 1: Café Americano ($2.5), Té Verde ($1.5), Tarta de Queso ($4.0), Té Helado ($2.5), Total: $10.5
-Mesa 1: Café Americano ($2.5), Té de Manzanilla ($1.75), Galletas ($2.0), Smoothie de Frutas ($4.5), Té Helado ($2.5), Total: $13.25
-Mesa 3: Café Americano ($2.5), Cappuccino ($3.5), Tarta de Queso ($4.0), Muffin de Chocolate ($2.5), Té Helado ($2.5), Total: $15.0
-Mesa 6: Café Americano ($2.5), Espresso ($2.0), Tarta de Queso ($4.0), Muffin de Chocolate ($2.5), Total: $11.0
+Mesa 3: Café Americano ($2.5), Café Latte ($3.0), Cappuccino ($3.5), Té Verde ($1.5), Tarta de Queso ($4.0), Brownie ($3.5), Muffin de Chocolate ($2.5), Limonada ($3.0), Total: $23.5
+Mesa 1: Café Americano ($2.5), Café Latte ($3.0), Té Verde ($1.5), Té Helado ($2.5), Total: $9.5
+Mesa 1: Café Americano ($2.5), Té Verde ($1.5), Tarta de Queso ($4.0), Total: $8.0
+Mesa 1: Café Americano ($2.5), Total: $2.5
+Mesa 1: Cappuccino ($3.5), Total: $3.5
+Mesa 1: Limonada ($3.0), Té Helado ($2.5), Total: $5.5
+Mesa 1: Té Verde ($1.5), Total: $1.5
+Mesa 3: Café Latte ($3.0), Total: $3.0
